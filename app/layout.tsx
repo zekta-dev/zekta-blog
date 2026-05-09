@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -26,14 +27,38 @@ export default function RootLayout({
     <html lang="ja" className={`${inter.className}`}>
       <body className="antialiased tracking-tight">
         <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 bg-white text-gray-900 dark:text-zinc-200">
-          <main className="max-w-[60ch] mx-auto w-full space-y-6">
-            {children}
-          </main>
+          <div className="flex-grow">
+            <Header />
+            <main className="max-w-[60ch] mx-auto w-full space-y-6">
+              {children}
+            </main>
+          </div>
           <Footer />
           <Analytics />
         </div>
       </body>
     </html>
+  );
+}
+
+function Header() {
+  return (
+    <header className="max-w-[60ch] mx-auto w-full mb-8">
+      <nav className="flex space-x-4 tracking-tight">
+        <Link
+          href="/"
+          className="font-bold text-gray-900 dark:text-zinc-200 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200"
+        >
+          Zekta
+        </Link>
+        <Link
+          href="/about"
+          className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-200"
+        >
+          About
+        </Link>
+      </nav>
+    </header>
   );
 }
 
